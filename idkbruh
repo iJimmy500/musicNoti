@@ -1,0 +1,17 @@
+set previousTrack to ""
+
+repeat
+	tell application "Music"
+		if player state is playing then
+			set currentTrack to name of current track
+			set artistName to artist of current track
+			set albumName to album of current track -- Optional album info
+			
+			if currentTrack is not previousTrack then
+				display notification  "by " & artistName with title currentTrack subtitle artistName
+				set previousTrack to currentTrack
+			end if
+		end if
+	end tell
+	delay 10 -- wait 10 seconds before checking again
+end repeat
